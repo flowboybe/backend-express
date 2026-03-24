@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-const users = [{
-    id: 1,
-    name: "Юра"
-},
+const users = [
+    {
+        id: 1,
+        name: "Юра"
+    },
     {
         id: 2,
         name: "Даня"
