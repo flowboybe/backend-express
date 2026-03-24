@@ -28,4 +28,13 @@ router.post('/', function (req, res, next) {
     res.status(201).json(newUser);
 });
 
+router.get('/:id', function (req, res, next) {
+    let user = users.find(user => user.id === Number(req.params.id));
+    if (!user) {
+        res.status(404).json({})
+        return;
+    }
+    res.send(user);
+})
+
 module.exports = router;
