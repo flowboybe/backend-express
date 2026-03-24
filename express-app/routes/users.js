@@ -3,9 +3,16 @@ const router = express.Router();
 
 const sqlite3 = require('sqlite3').verbose()
 const db = new sqlite3.Database('mydb.db');
-db.run(`CREATE TABLE IF NOT EXISTS users (
-   id INTEGER PRIMARY KEY AUTOINCREMENT,
-   name text)`);
+db.run(`CREATE TABLE IF NOT EXISTS users
+        (
+            id
+            INTEGER
+            PRIMARY
+            KEY
+            AUTOINCREMENT,
+            name
+            text
+        )`);
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
@@ -31,7 +38,11 @@ router.get('/:id', function (req, res, next) {
         if (err) {
             console.log(err);
         } else {
-            res.send(rows);
+            if (rows.length === 0) {
+                res.status(404).send("Not Found");
+            } else {
+                res.send(rows);
+            }
         }
     });
 })
